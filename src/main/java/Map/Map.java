@@ -12,9 +12,12 @@ public interface Map<K, V> {
 
     void clear();
 
-    ArrayList<K> getKeys();
+    K[] getKeys();
 
-    ArrayList<V> getValues();
+    V[] getValues();
 
+    /**
+     * Выводит обход в глубину
+     */
     void printMap();
 }
