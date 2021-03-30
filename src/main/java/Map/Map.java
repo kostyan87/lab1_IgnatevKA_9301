@@ -2,19 +2,19 @@ package Map;
 
 import java.util.ArrayList;
 
-public interface Map<K, V> {
+public interface Map<K> {
 
-    void insert(K key, V value);
+    void insert(int key, K value);
 
-    void remove(K key);
+    void remove(int key);
 
-    V find(K key);
+    RBTreeMap.Node<K> find(int key);
 
     void clear();
 
-    K[] getKeys();
+    ArrayList<Integer> getKeys();
 
-    V[] getValues();
+    ArrayList<K> getValues();
 
     /**
      * Выводит обход в глубину
