@@ -1,5 +1,7 @@
 package Map;
 
+import data_structures.LinkedList;
+
 import java.util.ArrayList;
 
 public interface Map<K> {
@@ -12,9 +14,9 @@ public interface Map<K> {
 
     void clear();
 
-    ArrayList<Integer> getKeys();
+    LinkedList<Integer> getKeys();
 
-    ArrayList<K> getValues();
+    LinkedList<K> getValues();
 
     /**
      * Выводит обход в глубину

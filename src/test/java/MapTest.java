@@ -1,5 +1,6 @@
 import Map.RBTreeMap;
 import Map.RBTreeUtils;
+import data_structures.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -65,28 +66,42 @@ public class MapTest {
                 "Node{key=25, value=key7, color=false}\n" + "Node{key=58, value=key10, color=true}\n" +
                 "Node{key=111, value=key2, color=false}\n");
 
-        ArrayList<Integer> assertKeys = new ArrayList<>();
-        assertKeys.add(17);
-        assertKeys.add(6);
-        assertKeys.add(11);
-        assertKeys.add(49);
-        assertKeys.add(18);
-        assertKeys.add(25);
-        assertKeys.add(58);
-        assertKeys.add(111);
+        LinkedList<Integer> assertKeys = new LinkedList<>();
+        assertKeys.pushBack(17);
+        assertKeys.pushBack(6);
+        assertKeys.pushBack(11);
+        assertKeys.pushBack(49);
+        assertKeys.pushBack(18);
+        assertKeys.pushBack(25);
+        assertKeys.pushBack(58);
+        assertKeys.pushBack(111);
 
-        assertEquals(assertKeys, myMap.getKeys());
+        assertEquals(assertKeys.get(0), myMap.getKeys().get(0));
+        assertEquals(assertKeys.get(1), myMap.getKeys().get(1));
+        assertEquals(assertKeys.get(2), myMap.getKeys().get(2));
+        assertEquals(assertKeys.get(3), myMap.getKeys().get(3));
+        assertEquals(assertKeys.get(4), myMap.getKeys().get(4));
+        assertEquals(assertKeys.get(5), myMap.getKeys().get(5));
+        assertEquals(assertKeys.get(6), myMap.getKeys().get(6));
+        assertEquals(assertKeys.get(7), myMap.getKeys().get(7));
 
-        ArrayList<String> assertValues = new ArrayList<>();
-        assertValues.add("key3");
-        assertValues.add("key8");
-        assertValues.add("key5");
-        assertValues.add("key9");
-        assertValues.add("key4");
-        assertValues.add("key7");
-        assertValues.add("key10");
-        assertValues.add("key2");
+        LinkedList<String> assertValues = new LinkedList<>();
+        assertValues.pushBack("key3");
+        assertValues.pushBack("key8");
+        assertValues.pushBack("key5");
+        assertValues.pushBack("key9");
+        assertValues.pushBack("key4");
+        assertValues.pushBack("key7");
+        assertValues.pushBack("key10");
+        assertValues.pushBack("key2");
 
-        assertEquals(assertValues, myMap.getValues());
+        assertEquals(assertValues.get(0), myMap.getValues().get(0));
+        assertEquals(assertValues.get(1), myMap.getValues().get(1));
+        assertEquals(assertValues.get(2), myMap.getValues().get(2));
+        assertEquals(assertValues.get(3), myMap.getValues().get(3));
+        assertEquals(assertValues.get(4), myMap.getValues().get(4));
+        assertEquals(assertValues.get(5), myMap.getValues().get(5));
+        assertEquals(assertValues.get(6), myMap.getValues().get(6));
+        assertEquals(assertValues.get(7), myMap.getValues().get(7));
     }
 }

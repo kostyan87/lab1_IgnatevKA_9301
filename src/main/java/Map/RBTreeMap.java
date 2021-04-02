@@ -1,7 +1,9 @@
 package Map;
 
 import java.util.ArrayList;
-import java.util.Stack;
+
+import data_structures.LinkedList;
+import data_structures.Stack;
 
 public class RBTreeMap<K> implements Map<K> {
 
@@ -92,17 +94,17 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public ArrayList<Integer> getKeys() {
-        ArrayList<Integer> keysArray = new ArrayList<>();
+    public LinkedList<Integer> getKeys() {
+        LinkedList<Integer> keysArray = new LinkedList<>();
         RBTreeMap.Node current = root;
         Stack<Node> stack = new Stack();
 
         stack.push(current);
 
-        while (stack.size() > 0)
+        while (stack.getSize() > 0)
         {
             current = stack.pop();
-            keysArray.add(current.key);
+            keysArray.pushBack(current.key);
             if (current.rightChild != RBTreeMap.Node.nil) stack.push(current.rightChild);
             if (current.leftChild != RBTreeMap.Node.nil) stack.push(current.leftChild);
         }
@@ -111,17 +113,17 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public ArrayList<K> getValues() {
-        ArrayList<K> valuesArray = new ArrayList<>();
+    public LinkedList<K> getValues() {
+        LinkedList<K> valuesArray = new LinkedList<>();
         RBTreeMap.Node<K> current = root;
         Stack<Node> stack = new Stack();
 
         stack.push(current);
 
-        while (stack.size() > 0)
+        while (stack.getSize() > 0)
         {
             current = stack.pop();
-            valuesArray.add(current.value);
+            valuesArray.pushBack(current.value);
             if (current.rightChild != RBTreeMap.Node.nil) stack.push(current.rightChild);
             if (current.leftChild != RBTreeMap.Node.nil) stack.push(current.leftChild);
         }
