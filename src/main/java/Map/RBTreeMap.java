@@ -1,7 +1,5 @@
 package Map;
 
-import java.util.ArrayList;
-
 import data_structures.LinkedList;
 import data_structures.Stack;
 

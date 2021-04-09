@@ -1,6 +1,6 @@
 package Map;
 
-import java.util.Stack;
+import data_structures.Stack;
 
 public class RBTreeUtils {
 
@@ -107,7 +107,7 @@ public class RBTreeUtils {
 
         stack.push(current);
 
-        while (stack.size() > 0)
+        while (stack.getSize() > 0)
         {
             current = stack.pop();
             if (current.key < min) {
@@ -203,7 +203,7 @@ public class RBTreeUtils {
 
         stack.push(current);
 
-        while (stack.size() > 0)
+        while (stack.getSize() > 0)
         {
             current = stack.pop();
             stringOfMap += current.toString() + "\n";
