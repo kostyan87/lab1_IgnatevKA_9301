@@ -2,8 +2,6 @@ package Map;
 
 import data_structures.LinkedList;
 
-import java.util.ArrayList;
-
 public interface Map<K> {
 
     void insert(int key, K value);
