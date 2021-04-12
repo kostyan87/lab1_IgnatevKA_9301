@@ -2,39 +2,25 @@ package Map;
 
 public class Main {
     public static void main(String[] args) {
-        RBTreeMap<String> myMap = new RBTreeMap<String>();
+        RBTreeMap<Character, Integer> myMap = new RBTreeMap<Character, Integer>();
 
-        myMap.insert(6, "key8");
+        myMap.insert('i', 3);
         myMap.printMap();
-        myMap.insert(45, "key6");
+        myMap.insert('t', 4);
         myMap.printMap();
-        myMap.insert(13, "key1");
+        myMap.insert(' ', 3);
         myMap.printMap();
-        myMap.insert(25, "key7");
+        myMap.insert('s', 3);
         myMap.printMap();
-        myMap.insert(11, "key5");
+        myMap.insert('e', 1);
         myMap.printMap();
-        myMap.insert(58, "key10");
+        myMap.insert('r', 1);
         myMap.printMap();
-        myMap.insert(17, "key3");
+        myMap.insert('n', 1);
         myMap.printMap();
-        myMap.insert(18, "key4");
-        myMap.printMap();
-        myMap.insert(111, "key2");
-        myMap.printMap();
-        myMap.insert(49, "key9");
-
+        myMap.insert('g', 1);
         myMap.printMap();
 
-        myMap.remove(13);
-
-        myMap.printMap();
-
-        myMap.remove(45);
-
-        myMap.printMap();
-
-        System.out.println(myMap.getKeys());
-        System.out.println(myMap.getValues());
+        System.out.println(myMap.find('t'));
     }
 }

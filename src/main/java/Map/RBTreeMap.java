@@ -3,23 +3,25 @@ package Map;
 import data_structures.LinkedList;
 import data_structures.Stack;
 
-public class RBTreeMap<K> implements Map<K> {
+import java.util.Objects;
 
-    public Node<K> root = Node.nil;
+public class RBTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
+
+    public Node<K, V> root = Node.nil;
 
     public RBTreeMap() {
         Node.nil.color = true;
     }
 
     @Override
-    public void insert(int key, K value) {
-        Node<K> z = new Node<K>(key, value);
-        Node<K> y = Node.nil;
-        Node<K> x = root;
+    public void insert(K key, V value) {
+        Node<K, V> z = new Node<K, V>(key, value);
+        Node<K, V> y = Node.nil;
+        Node<K, V> x = root;
 
         while (x != Node.nil) {
             y = x;
-            if (z.key < x.key)
+            if (z.key.compareTo(x.key) < 0)
                 x = x.leftChild;
             else
                 x = x.rightChild;
@@ -27,7 +29,7 @@ public class RBTreeMap<K> implements Map<K> {
         z.parent = y;
         if (y == Node.nil)
             root = z;
-        else if (z.key < y.key)
+        else if (z.key.compareTo(y.key) < 0)
             y.leftChild = z;
         else y.rightChild = z;
         z.leftChild = Node.nil;
@@ -37,8 +39,8 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public void remove(int key) {
-        Node<K> z = find(key);
+    public void remove(K key) {
+        Node<K, V> z = find(key);
         Node x;
         Node y = z;
         boolean originalColor = y.color;
@@ -75,12 +77,12 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public RBTreeMap.Node<K> find(int key) {
-        Node<K> x = root;
+    public RBTreeMap.Node<K, V> find(K key) {
+        Node<K, V> x = root;
         while (x != Node.nil)
         {
             if (x.key == key) return x;
-            if (x.key > key) x = x.leftChild;
+            if (x.key.compareTo(key) > 0) x = x.leftChild;
             else x = x.rightChild;
         }
         throw new RuntimeException("There is no element with such a key in map");
@@ -92,10 +94,10 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public LinkedList<Integer> getKeys() {
-        LinkedList<Integer> keysArray = new LinkedList<>();
-        RBTreeMap.Node current = root;
-        Stack<Node> stack = new Stack();
+    public LinkedList<K> getKeys() {
+        LinkedList<K> keysArray = new LinkedList<>();
+        RBTreeMap.Node<K, V> current = root;
+        Stack<Node<K, V>> stack = new Stack();
 
         stack.push(current);
 
@@ -111,9 +113,9 @@ public class RBTreeMap<K> implements Map<K> {
     }
 
     @Override
-    public LinkedList<K> getValues() {
-        LinkedList<K> valuesArray = new LinkedList<>();
-        RBTreeMap.Node<K> current = root;
+    public LinkedList<V> getValues() {
+        LinkedList<V> valuesArray = new LinkedList<>();
+        RBTreeMap.Node<K, V> current = root;
         Stack<Node> stack = new Stack();
 
         stack.push(current);
@@ -134,16 +136,16 @@ public class RBTreeMap<K> implements Map<K> {
         System.out.println(RBTreeUtils.mapToString(this));
     }
 
-    public static class Node<K> {
-        public final K value;
-        public int key;
+    public static class Node<K, V> {
+        public V value;
+        public final K key;
         public boolean color; // true - (black) or false - (red)
-        public Node<K> leftChild;
-        public Node<K> rightChild;
-        public Node<K> parent;
-        public static Node nil = new Node(-1, null);
+        public Node<K, V> leftChild;
+        public Node<K, V> rightChild;
+        public Node<K, V> parent;
+        public static Node nil = new Node(null, null);
 
-        public Node(int key, K value) {
+        public Node(K key, V value) {
             this.color = false;
             this.key = key;
             this.value = value;

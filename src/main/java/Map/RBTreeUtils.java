@@ -4,8 +4,8 @@ import data_structures.Stack;
 
 public class RBTreeUtils {
 
-    public static void fixedUp(RBTreeMap T, RBTreeMap.Node z) {
-        RBTreeMap.Node y;
+    public static <K, V> void  fixedUp(RBTreeMap T, RBTreeMap.Node z) {
+        RBTreeMap.Node<K, V> y;
         while (z.parent.color == false)
             if (z.parent == z.parent.parent.leftChild) {
                 y = z.parent.parent.rightChild;
@@ -46,8 +46,8 @@ public class RBTreeUtils {
         T.root.color = true;
     }
 
-    public static void leftRotate(RBTreeMap T, RBTreeMap.Node x) {
-        RBTreeMap.Node y = x.rightChild;
+    public static <K, V> void leftRotate(RBTreeMap T, RBTreeMap.Node x) {
+        RBTreeMap.Node<K, V> y = x.rightChild;
         x.rightChild = y.leftChild;
 
         if (y.leftChild != RBTreeMap.Node.nil)
@@ -66,8 +66,8 @@ public class RBTreeUtils {
         x.parent = y;
     }
 
-    public static void rightRotate(RBTreeMap T, RBTreeMap.Node y) {
-        RBTreeMap.Node x = y.leftChild;
+    public static <K, V> void rightRotate(RBTreeMap T, RBTreeMap.Node y) {
+        RBTreeMap.Node<K, V> x = y.leftChild;
         y.leftChild = x.rightChild;
 
         if (x.rightChild != RBTreeMap.Node.nil)
@@ -96,13 +96,13 @@ public class RBTreeUtils {
         y.parent = x.parent;
     }
 
-    public static RBTreeMap.Node treeMin(RBTreeMap.Node root) {
+    public static <K extends Comparable<K>, V> RBTreeMap.Node treeMin(RBTreeMap.Node root) {
         if (root == RBTreeMap.Node.nil)
             throw new RuntimeException("Map is empty");
 
-        RBTreeMap.Node minNode = root;
-        int min = Integer.MAX_VALUE;
-        RBTreeMap.Node current = root;
+        RBTreeMap.Node<K, V> minNode = root;
+        K min = (K) root.key;
+        RBTreeMap.Node<K, V> current = root;
         Stack<RBTreeMap.Node> stack = new Stack();
 
         stack.push(current);
@@ -110,7 +110,7 @@ public class RBTreeUtils {
         while (stack.getSize() > 0)
         {
             current = stack.pop();
-            if (current.key < min) {
+            if (current.key.compareTo(min) < 0) {
                 min = current.key;
                 minNode = current;
             }
@@ -121,12 +121,12 @@ public class RBTreeUtils {
         return minNode;
     }
 
-    public static void deleteFixup(RBTreeMap T, RBTreeMap.Node x) {
+    public static <K, V> void deleteFixup(RBTreeMap T, RBTreeMap.Node x) {
         while (x != T.root && x.color == true)
         {
             if (x == x.parent.leftChild)
             {
-                RBTreeMap.Node w = x.parent.rightChild;
+                RBTreeMap.Node<K, V> w = x.parent.rightChild;
 
                 if (w.color == false)
                 {
@@ -159,7 +159,7 @@ public class RBTreeUtils {
             }
             else
             {
-                RBTreeMap.Node w = x.parent.leftChild;
+                RBTreeMap.Node<K, V> w = x.parent.leftChild;
 
                 if (w.color == false)
                 {
@@ -194,11 +194,11 @@ public class RBTreeUtils {
         x.color = true;
     }
 
-    public static String mapToString(RBTreeMap T) {
+    public static <K, V> String mapToString(RBTreeMap T) {
         if (T.root == RBTreeMap.Node.nil) return "Map is empty";
 
         String stringOfMap = "";
-        RBTreeMap.Node current = T.root;
+        RBTreeMap.Node<K, V> current = T.root;
         Stack<RBTreeMap.Node> stack = new Stack();
 
         stack.push(current);

@@ -2,19 +2,19 @@ package Map;
 
 import data_structures.LinkedList;
 
-public interface Map<K> {
+public interface Map<K, V> {
 
-    void insert(int key, K value);
+    void insert(K key, V value);
 
-    void remove(int key);
+    void remove(K key);
 
-    RBTreeMap.Node<K> find(int key);
+    RBTreeMap.Node<K, V> find(K key);
 
     void clear();
 
-    LinkedList<Integer> getKeys();
+    LinkedList<K> getKeys();
 
-    LinkedList<K> getValues();
+    LinkedList<V> getValues();
 
     /**
      * Выводит обход в глубину
